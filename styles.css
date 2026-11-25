@@ -3,3 +3,44 @@
 @media(max-width:1100px){.sidebar{width:205px}.main-area{margin-left:205px}.game-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.sidebar{transform:translateX(-100%);transition:transform .25s;width:250px;box-shadow:20px 0 50px #24284a18}.sidebar.open{transform:translateX(0)}.main-area{margin-left:0}.topbar{height:64px;padding:0 15px;gap:10px}.mobile-menu{display:block}.mobile-brand{display:flex;align-items:center;gap:7px;font-weight:900;font-size:13px;letter-spacing:-.03em;white-space:nowrap;color:#282d47}.mobile-brand img{width:23px}.search-wrap{margin-left:auto;width:auto;flex:1;max-width:310px;height:39px}.search-wrap kbd{display:none}.top-actions{gap:7px}.icon-button,.avatar-button{width:34px;height:34px}.content{padding:23px 15px 18px}.welcome-row{min-height:155px;padding:22px 19px}.welcome-row h1{font-size:27px;max-width:310px}.welcome-art{position:absolute;right:-48px;opacity:.48;transform:scale(.8)}.featured-grid{grid-template-columns:1fr;gap:11px}.featured-card{display:grid;grid-template-columns:42% 1fr;align-items:stretch}.featured-card .cover{height:108px}.featured-card .card-info{padding:12px;align-self:center}.game-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.game-card .cover{height:115px}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.category-card{padding:12px;gap:9px}.category-icon{width:35px;height:35px}.footer{flex-wrap:wrap;gap:12px}.footer>div{width:100%;margin:6px 0 0;flex-wrap:wrap}.section-block{margin-top:28px}}
 @media(max-width:380px){.mobile-brand{font-size:11px}.mobile-brand img{width:19px}.topbar{gap:7px;padding:0 10px}.top-actions{gap:5px}.welcome-row h1{font-size:24px}.game-grid{gap:8px}.category-card{padding:10px}.category-card small{font-size:8px}}
+
+
+/* Division reference-inspired visual system: bright, playful, clean */
+:root{--bg:#f3fbf7;--panel:#ffffff;--panel2:#e9f6f1;--line:#dcebe5;--text:#081748;--muted:#53647d;--purple:#7c3aed;--blue:#3b82f6;--radius:22px;--navy:#081748;--turquoise:#72f2dc;--yellow:#ffe44d;--lavender:#dfbeff;--pink:#ffb6ce;--sky:#a6d8ff;--coral:#d91e4b}
+body{background:var(--bg);color:var(--navy);font-family:'Plus Jakarta Sans','Inter',Arial,sans-serif}
+.sidebar{background:#fff;border-right:1px solid #dcebe5}
+.brand{color:var(--navy)}
+.nav-link{color:#53647d;border-radius:14px}
+.nav-link:hover,.nav-link.active{background:var(--turquoise);color:var(--navy);box-shadow:none}
+.topbar{background:rgba(243,251,247,.92);border-color:#dcebe5}
+.search-wrap{background:#fff;border-color:#dcebe5;border-radius:16px}
+.search-wrap input{color:var(--navy)}
+.icon-button{background:#e8f3ee;color:var(--navy)}
+.avatar-button{background:var(--navy)}
+.content{max-width:1480px}
+.welcome-row{background:var(--navy);border:0;border-radius:28px;color:#fff;min-height:178px}
+.welcome-row .eyebrow{color:var(--turquoise)}
+.welcome-row h1{color:#fff}
+.welcome-row h1 span{color:var(--yellow)}
+.welcome-row p{color:#d5e4e8}
+.art-ring{border-color:rgba(114,242,220,.7);box-shadow:0 0 50px rgba(114,242,220,.15)}
+.art-controller,.spark{color:var(--yellow)}
+.section-heading h2{color:var(--navy)}
+.eyebrow{color:#52648a}
+.text-link{color:#5b35b5}
+.featured-card,.game-card{background:#fff;border:1px solid #dcebe5;border-radius:20px;box-shadow:0 5px 18px rgba(8,23,72,.06)}
+.featured-card:nth-child(3n+1){border-bottom:5px solid var(--turquoise)}
+.featured-card:nth-child(3n+2){border-bottom:5px solid var(--pink)}
+.featured-card:nth-child(3n){border-bottom:5px solid var(--yellow)}
+.game-card:hover,.featured-card:hover{border-color:#b8d8ce;box-shadow:0 14px 30px rgba(8,23,72,.1)}
+.cover{background:#e8f4ef}
+.cover-tag{background:var(--yellow);color:var(--navy);border:0;border-radius:999px}
+.play-mark{background:var(--navy);color:#fff;border-radius:50%}
+.category-card{background:#fff;color:var(--navy);border:1px solid #dcebe5;border-radius:18px}
+.category-card:nth-child(4n+1) .category-icon{background:var(--turquoise)}
+.category-card:nth-child(4n+2) .category-icon{background:var(--yellow)}
+.category-card:nth-child(4n+3) .category-icon{background:var(--lavender)}
+.category-card:nth-child(4n) .category-icon{background:var(--pink)}
+.category-card small{color:#53647d}
+.footer{border-color:#dcebe5;color:#65748b}
+@media(max-width:760px){.sidebar{background:#fff}.welcome-row{min-height:160px}.featured-card,.game-card{border-radius:17px}}
