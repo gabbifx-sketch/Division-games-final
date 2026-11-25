@@ -31,3 +31,32 @@ th,td{border-color:#edf0f6}th{color:#8991a6}
 .profile-stats article{background:#fff;border-color:#e8eaf3}
 .not-found{border-color:#e8eaf3;background:radial-gradient(ellipse at center,rgba(120,96,230,.1),transparent 60%)}
 @media(max-width:850px){.admin-sidebar{box-shadow:15px 0 40px #25294a18}}
+
+
+/* Shared secondary pages follow the Division reference palette */
+:root{--division-ink:#081748;--division-turquoise:#72f2dc;--division-yellow:#ffe44d;--division-lavender:#dfbeff;--division-pink:#ffb6ce;--division-sky:#a6d8ff}
+.auth-body{background:#f3fbf7;color:var(--division-ink)}
+.auth-back{color:#53647d}
+.auth-layout{color:var(--division-ink)}
+.auth-decoration h1{color:var(--division-ink)}
+.auth-decoration h1 span{color:#6b46c1}
+.auth-decoration p,.auth-sub{color:#66748a}
+.auth-card{background:#fff;border:1px solid #dcebe5;border-radius:24px;box-shadow:0 16px 45px rgba(8,23,72,.08)}
+.auth-brand{color:var(--division-ink)}
+.auth-card .eyebrow{color:#6b46c1}
+.auth-card h2{color:var(--division-ink)}
+.auth-card>label,.field-pair label{color:#394967}
+.auth-card input:not([type=checkbox]){background:#f8fcfa;color:var(--division-ink);border:1px solid #dcebe5;border-radius:12px}
+.auth-card input:focus{border-color:#55cdb6;box-shadow:0 0 0 3px rgba(114,242,220,.25)}
+.auth-options a,.auth-switch a,.terms-check a{color:#6b46c1}
+.primary-button{background:var(--division-ink);border-radius:13px}
+.google-button{background:#f8fcfa;color:var(--division-ink);border-color:#dcebe5;border-radius:13px}
+.auth-divider{color:#8994a8}
+.form-note{color:#728097}
+.simple-top{background:#f3fbf7;border-color:#dcebe5}
+.static-page,.game-page{color:var(--division-ink)}
+.static-page h1,.game-detail-row h1{color:var(--division-ink)}
+.admin-panel,.profile-hero,.profile-stats article,.comment-panel,.player-frame{background:#fff;border-color:#dcebe5;border-radius:20px}
+.status-pill{background:#e3faf4;color:#087b68}
+.secondary-button,.table-action{border-radius:12px}
+@media(max-width:700px){.auth-layout{grid-template-columns:1fr;padding:78px 18px 28px}.auth-decoration{display:none}.auth-card{padding:25px}}
