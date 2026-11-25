@@ -1,4 +1,4 @@
-const demoGames=[
+let demoGames=[
 {id:"drift-king",title:"Drift King",category:"Racing",plays:"2.4M",tag:"FEATURED",image:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85",description:"Take the wheel, master every corner and chase the perfect drift.",featured:true},
 {id:"rogue-sergeant",title:"Rogue Sergeant",category:"Action",plays:"980K",tag:"TRENDING",image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=85",description:"A fast-paced action challenge built for sharp reflexes.",multiplayer:true},
 {id:"stacky-maze",title:"Stacky Maze",category:"Puzzle",plays:"760K",tag:"NEW",image:"https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=900&q=85",description:"Think ahead, stack smart and find your way through."},
