@@ -143,7 +143,7 @@ language plpgsql
 set search_path = public
 as $$
 begin
-  if new.role is distinct from old.role and not public.is_division_admin() then
+  if new.role is distinct from old.role and auth.uid() is not null and not public.is_division_admin() then
     raise exception 'Only an existing administrator can change account roles';
   end if;
   return new;
@@ -190,7 +190,7 @@ create policy "Users manage own likes" on public.game_likes for all to authentic
 create policy "Follows are public" on public.follows for select using (true);
 create policy "Users manage own follows" on public.follows for all to authenticated using (auth.uid() = follower_id) with check (auth.uid() = follower_id);
 
-create policy "Play events insertable" on public.game_plays for insert with check (auth.uid() = user_id or user_id is null);
+create policy "Signed-in users record plays" on public.game_plays for insert to authenticated with check (auth.uid() = user_id);
 create policy "Users read own plays" on public.game_plays for select to authenticated using (auth.uid() = user_id or public.is_division_admin());
 
 create policy "Users create reports" on public.reports for insert to authenticated with check (auth.uid() = reporter_id);
