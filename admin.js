@@ -13,12 +13,12 @@ const res=await Promise.all([
 sb.from("games").select("id,title,slug,thumbnail_url,is_published,is_featured,created_at,categories(name)").order("created_at",{ascending:false}),
 sb.from("profiles").select("user_id,username,first_name,last_name,status,created_at").order("created_at",{ascending:false}).limit(10),
 sb.from("likes").select("user_id",{count:"exact",head:true}),
-sb.from("comments").select("id,body,created_at,profiles(username),games(title)").order("created_at",{ascending:false}).limit(10),
+sb.from("comments").select("id,body,created_at,profiles(username),games(title)",{count:"exact"}).order("created_at",{ascending:false}).limit(10),
 sb.from("profiles").select("user_id",{count:"exact",head:true})
 ]);
 const games=res[0].data||[],users=res[1].data||[],comments=res[3].data||[];
 if(res[0].error){say(res[0].error.message,true);return}
-const nums=[games.length,res[4].count||0,res[2].count||0,res[3].data?res[3].data.length:0],k=document.querySelectorAll(".admin-kpis article b");
+const nums=[games.length,res[4].count||0,res[2].count||0,res[3].count||0],k=document.querySelectorAll(".admin-kpis article b");
 nums.forEach((n,i)=>{if(k[i])k[i].textContent=n});
 body.innerHTML=games.map(g=>'<tr><td><div style="display:flex;align-items:center;gap:9px">'+(g.thumbnail_url?'<img src="'+esc(g.thumbnail_url)+'" alt="" style="width:44px;height:34px;object-fit:cover;border-radius:7px">':"")+'<b>'+esc(g.title)+'</b></div></td><td>'+esc(g.categories&&g.categories.name||"Uncategorised")+'</td><td>'+(g.is_featured?"Yes":"—")+'</td><td><span class="admin-status">'+(g.is_published?"Published":"Draft")+'</span></td><td><button class="table-action" data-publish="'+g.id+'" data-state="'+g.is_published+'">'+(g.is_published?"Unpublish":"Publish")+'</button> <button class="table-action" data-edit="'+g.id+'">Edit</button> <button class="table-action" data-delete="'+g.id+'">Delete</button></td></tr>').join("")||'<tr><td colspan="5">No games yet. Add your first game.</td></tr>';
 $("#adminUsers").innerHTML=users.map(u=>'<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #e7eee9"><span><b>'+esc(u.username||"Player")+'</b><small style="display:block;color:#77839a">'+esc(((u.first_name||"")+" "+(u.last_name||"")).trim())+'</small></span><button class="table-action" data-user="'+u.user_id+'" data-status="'+u.status+'">'+(u.status==="suspended"?"Reactivate":"Suspend")+'</button></div>').join("")||"<p>No players registered.</p>";
