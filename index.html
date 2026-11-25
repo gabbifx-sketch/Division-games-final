@@ -1,48 +1,9 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#070b20"><meta name="description" content="Discover and play your next favourite browser game on Division.">
-  <title>DIVISION — Play your next favourite game</title>
-  <link rel="icon" href="assets/division-mark.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="app-shell">
-    <aside class="sidebar" id="sidebar">
-      <a class="brand" href="#" aria-label="Division home"><img src="assets/division-mark.svg" alt=""><span>DIVISION</span></a>
-      <div class="side-label">DISCOVER</div>
-      <nav class="side-nav" aria-label="Main navigation">
-        <a class="nav-link active" href="#home" data-view="home"><span class="nav-icon">⌂</span>Home</a>
-        <a class="nav-link" href="#games" data-view="games"><span class="nav-icon">▦</span>All Games</a>
-        <a class="nav-link" href="#categories" data-view="categories"><span class="nav-icon">◈</span>Categories</a>
-        <a class="nav-link" href="#favourites" data-view="favourites"><span class="nav-icon">♡</span>Favourites</a>
-      </nav>
-      <div class="side-label second-label">YOUR SPACE</div>
-      <nav class="side-nav">
-        <a class="nav-link" href="profile.html"><span class="nav-icon">◉</span>Profile</a>
-        <a class="nav-link" href="settings.html"><span class="nav-icon">⚙</span>Settings</a>
-      </nav>
-      <div class="sidebar-bottom"><div class="mini-promo"><span class="promo-orb">✦</span><b>Game on.</b><p>Your next favourite game is one click away.</p></div><span class="side-version">DIVISION · BETA</span></div>
-    </aside>
-    <main class="main-area">
-      <header class="topbar">
-        <button class="icon-button mobile-menu" id="menuBtn" aria-label="Open menu">☰</button>
-        <div class="mobile-brand"><img src="assets/division-mark.svg" alt=""> DIVISION</div>
-        <label class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search games..." autocomplete="off"><kbd>⌘ K</kbd></label>
-        <div class="top-actions"><button class="icon-button" aria-label="Notifications">♧<i class="notification-dot"></i></button><button class="avatar-button" aria-label="Open profile">G</button></div>
-      </header>
-      <div class="content" id="content">
-        <section class="welcome-row"><div><div class="eyebrow"><span class="live-dot"></span> THE PLAYGROUND IS OPEN</div><h1>Find your next <span>favourite game.</span></h1><p>Instant fun. No downloads. Just play.</p></div><div class="welcome-art" aria-hidden="true"><div class="art-ring"></div><div class="art-controller">✣</div><span class="spark spark-one">✦</span><span class="spark spark-two">✧</span></div></section>
-        <section class="section-block" id="featuredSection"><div class="section-heading"><div><div class="eyebrow">HAND-PICKED FOR YOU</div><h2>Featured games</h2></div><a class="text-link" href="#games" data-view="games">See all <span>↗</span></a></div><div class="featured-grid" id="featuredGrid"></div></section>
-        <section class="section-block"><div class="section-heading"><div><div class="eyebrow">THE COMMUNITY'S PICKS</div><h2>Popular right now</h2></div><a class="text-link" href="#games" data-view="games">Explore games <span>↗</span></a></div><div class="game-grid" id="popularGrid"></div></section>
-        <section class="section-block"><div class="section-heading"><div><div class="eyebrow">A LITTLE BIT OF EVERYTHING</div><h2>Explore categories</h2></div></div><div class="category-grid" id="categoryGrid"></div></section>
-        <footer class="footer"><a class="footer-brand" href="#"><img src="assets/division-mark.svg" alt=""> DIVISION</a><span>Made for the love of games.</span><div><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></footer>
-      </div>
-    </main>
-  </div>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="app.js"></script>
-</body></html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#72f2dc"><title>DIVISION — Play instantly</title><link rel="icon" href="assets/division-mark.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Varela+Round&family=Fragment+Mono&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet"><link rel="stylesheet" href="styles.css"></head>
+<body class="division-home"><header class="reference-header"><nav class="reference-nav"><a class="reference-brand" href="index.html"><span class="brand-mark"><i></i></span><b>DIVISION</b></a><div class="nav-center"><a href="#popular">🔥</a><a href="#new">✦</a><a href="#multiplayer">♟</a><label class="reference-search"><span class="material-symbols-outlined">search</span><input id="searchInput" type="search" placeholder="Search 1,200+ instant games..." autocomplete="off"></label></div><div class="nav-right"><a class="nav-pill explore-link" href="#categories">Explore</a><a class="nav-icon" href="admin/index.html" aria-label="Admin">⚙</a><a class="profile-pill" href="profile.html"><span class="profile-dot">G</span><span>Guest Player</span></a></div><button id="menuBtn" class="mobile-nav-toggle" aria-label="Open navigation">☰</button></nav><div class="mobile-nav-links" id="mobileNav"><a href="#popular">Popular</a><a href="#new">New Games</a><a href="#multiplayer">Multiplayer</a><a href="#categories">Categories</a><a href="profile.html">My Profile</a></div></header>
+<main id="content"><section class="home-section featured-section" id="home"><div class="home-wrap"><div class="section-topline"><div class="section-title"><span class="section-icon">✦</span><div><h1>Featured Games</h1><p>Instant browser play — zero downloads, pure arcade speed</p></div></div><a class="see-more" href="#popular">See More <span>→</span></a></div><div class="featured-grid" id="featuredGrid"></div></div></section>
+<section class="home-section popular-section" id="popular"><div class="home-wrap"><div class="section-topline"><div class="section-title"><span class="section-icon">🔥</span><div><h2>Popular Games</h2><p>The games everyone is playing right now</p></div></div><a class="see-more" href="#categories">See More <span>›</span></a></div><div class="game-grid" id="popularGrid"></div></div></section>
+<section class="home-section new-section" id="new"><div class="home-wrap"><div class="section-topline"><div class="section-title"><span class="section-icon">✧</span><div><h2>New Games</h2><p>Fresh games to try out</p></div></div></div><div class="game-grid compact-grid" id="newGrid"></div></div></section>
+<section class="home-section multiplayer-section" id="multiplayer"><div class="home-wrap"><div class="section-topline"><div class="section-title"><span class="section-icon">♟</span><div><h2>Multiplayer Games</h2><p>Bring someone along for the fun</p></div></div></div><div class="game-grid compact-grid" id="multiplayerGrid"></div></div></section>
+<section class="home-section category-section" id="categories"><div class="home-wrap"><div class="section-topline"><div class="section-title"><span class="section-icon">▦</span><div><h2>Game Categories</h2><p>Pick your kind of fun</p></div></div></div><div class="category-grid" id="categoryGrid"></div></div></section></main>
+<footer class="reference-footer"><div class="footer-inner"><div><a class="reference-brand footer-brand" href="index.html"><span class="brand-mark"><i></i></span><b>DIVISION</b></a><p>Let the world play — instant browser games.</p></div><div class="footer-links"><a href="#popular">Explore</a><a href="profile.html">My Profile</a><a href="login.html">Sign In</a><a href="admin/index.html">Admin</a></div><small>© 2026 Division Games</small></div></footer><div class="toast" id="toast" role="status"></div><script src="app.js"></script></body></html>
