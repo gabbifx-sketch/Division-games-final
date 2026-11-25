@@ -1,18 +1,1 @@
-(() => {
-  const search = document.querySelector('input[aria-label="Search admin games"]');
-  const rows = [...document.querySelectorAll('tbody tr')];
-  if (search) search.addEventListener('input', () => {
-    const q=search.value.trim().toLowerCase();
-    rows.forEach(row => row.hidden=!row.textContent.toLowerCase().includes(q));
-  });
-  document.querySelectorAll('button').forEach(button => {
-    if (/delete|remove/i.test(button.textContent.trim())) button.addEventListener('click', () => {
-      const row=button.closest('tr, [class*="rounded-lg"]');
-      if (row && confirm('Remove this item from this demo view?')) row.remove();
-    });
-  });
-  document.querySelectorAll('a[href="#add-game"]').forEach(link => link.addEventListener('click',e=>{
-    e.preventDefault();
-    alert('Game creation will be enabled when the admin form and database are connected.');
-  }));
-})();
+const demo=[["Drift King","Racing"],["Rogue Sergeant","Action"],["Stacky Maze","Puzzle"],["Super Car","Racing"],["Pixel World","Adventure"],["Street Football","Sports"],["Neon Runner","Arcade"],["Kingdom Quest","Adventure"]];const body=document.getElementById("gameTable");function draw(){body.innerHTML=demo.map((g,i)=>`<tr><td><b>${g[0]}</b></td><td>${g[1]}</td><td><span class="status-pill">Draft</span></td><td><button class="table-action" data-remove="${i}">Remove</button></td></tr>`).join("");document.getElementById("gameCount").textContent=demo.length}draw();body.addEventListener("click",e=>{const b=e.target.closest("[data-remove]");if(!b)return;demo.splice(Number(b.dataset.remove),1);draw()});document.getElementById("addGame").addEventListener("click",()=>{const title=prompt("Demo game title:");if(!title||!title.trim())return;const category=prompt("Game category:","Arcade")||"Other";demo.push([title.trim(),category.trim()]);draw()});document.getElementById("adminMenu").addEventListener("click",()=>document.querySelector(".admin-sidebar").classList.toggle("open"));document.querySelectorAll("[data-admin]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();document.querySelectorAll("[data-admin]").forEach(x=>x.classList.remove("active"));a.classList.add("active");if(a.dataset.admin!=="games")alert("This admin section will be connected after the database and role permissions are configured.");}));
