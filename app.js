@@ -1,29 +1,24 @@
-(() => {
-  const search = document.querySelector('input[type="search"][aria-label="Search games"]');
-  const cards = [...document.querySelectorAll('main a[href="/game.html"], main a[href^="/game.html?"]')];
-  cards.forEach(card => {
-    const label = card.querySelector('h2,h3,h4,[data-design-text-token]')?.textContent?.trim() || card.getAttribute('aria-label') || card.textContent.trim();
-    const slug = label.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-    card.href = '/game.html?id=' + encodeURIComponent(slug);
-    card.addEventListener('click', () => { try { sessionStorage.setItem('division:last-game', label); } catch {} });
-  });
-  if (search) {
-    search.addEventListener('input', () => {
-      const q = search.value.trim().toLowerCase();
-      cards.forEach(card => {
-        const match = !q || card.textContent.toLowerCase().includes(q);
-        card.hidden = !match;
-      });
-      document.querySelectorAll('main section').forEach(section => {
-        const sectionCards = [...section.querySelectorAll('a[href^="/game.html"]')];
-        if (sectionCards.length) section.hidden = sectionCards.every(card => card.hidden);
-      });
-    });
-    search.addEventListener('keydown', e => {
-      if (e.key === 'Escape') { search.value=''; search.dispatchEvent(new Event('input')); }
-    });
-  }
-  document.addEventListener('keydown', e => {
-    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase()==='k' && search) { e.preventDefault(); search.focus(); }
-  });
-})();
+const demoGames=[
+{id:"drift-king",title:"Drift King",category:"Racing",plays:"2.4M",tag:"FEATURED",image:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85",description:"Take the wheel, master every corner and chase the perfect drift.",featured:true},
+{id:"rogue-sergeant",title:"Rogue Sergeant",category:"Action",plays:"980K",tag:"TRENDING",image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=85",description:"A fast-paced action challenge built for sharp reflexes."},
+{id:"stacky-maze",title:"Stacky Maze",category:"Puzzle",plays:"760K",tag:"NEW",image:"https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=900&q=85",description:"Think ahead, stack smart and find your way through."},
+{id:"super-car",title:"Super Car",category:"Racing",plays:"1.8M",image:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=85",description:"Push a supercar to its limits on the open road."},
+{id:"pixel-world",title:"Pixel World",category:"Adventure",plays:"640K",image:"https://images.unsplash.com/photo-1607853202273-797f1c22a38e?auto=format&fit=crop&w=900&q=85",description:"Explore colourful worlds and discover hidden paths."},
+{id:"street-football",title:"Street Football",category:"Sports",plays:"520K",image:"https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=900&q=85",description:"Show your skills in a quick street football match."},
+{id:"neon-runner",title:"Neon Runner",category:"Arcade",plays:"410K",image:"https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=900&q=85",description:"Dodge obstacles and see how far you can go."},
+{id:"kingdom-quest",title:"Kingdom Quest",category:"Adventure",plays:"390K",image:"https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=85",description:"Begin a quest across mysterious lands."}
+];
+const categories=[["🏎","Racing","Fast-paced driving games"],["⚔","Action","Quick reflex challenges"],["🧩","Puzzle","Put your brain to work"],["🏆","Sports","Compete and score"],["🗺","Adventure","Explore new worlds"],["👾","Arcade","Classic pick-up-and-play"],["🎯","Strategy","Plan your next move"],["🎮","Simulation","Try something different"]];
+const $=s=>document.querySelector(s);
+function gameCard(g,featured=false){return `<article class="${featured?"featured-card":"game-card"}" data-game="${g.id}" tabindex="0" role="button" aria-label="Open ${g.title}"><div class="cover"><img src="${g.image}" alt="${g.title} game artwork" loading="lazy"><span class="cover-tag">${g.tag||g.category.toUpperCase()}</span></div><div class="card-info"><div><h3>${g.title}</h3><p>${g.category} · ${g.plays} plays</p></div><span class="play-mark">▶</span></div></article>`}
+function renderHome(){const featured=demoGames.filter(g=>g.featured||g.tag==="TRENDING"||g.tag==="NEW").slice(0,3);$("#featuredGrid").innerHTML=featured.map(g=>gameCard(g,true)).join("");$("#popularGrid").innerHTML=demoGames.slice(3).map(g=>gameCard(g)).join("");$("#categoryGrid").innerHTML=categories.map(([icon,name,desc])=>`<button class="category-card" data-category="${name}"><span class="category-icon">${icon}</span><span><b>${name}</b><small>${desc}</small></span></button>`).join("")}
+function showToast(message){const t=$("#toast");t.textContent=message;t.classList.add("show");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove("show"),2300)}
+function openGame(id){const game=demoGames.find(g=>g.id===id);if(!game)return;location.href="game.html?id="+encodeURIComponent(id)}
+function showResults(query){const q=query.trim().toLowerCase();if(!q){renderHome();return}const found=demoGames.filter(g=>(g.title+" "+g.category+" "+g.description).toLowerCase().includes(q));$("#content").innerHTML=`<div class="section-heading"><div><div class="eyebrow">YOUR SEARCH</div><h2>Results for “${query.replace(/[&<>"]/g,"") }”</h2></div><a class="text-link" href="#" id="backHome">← Back home</a></div><div class="game-grid">${found.length?found.map(g=>gameCard(g)).join(""):"<p>No games found. Try another search.</p>"}</div>`;$("#backHome").addEventListener("click",e=>{e.preventDefault();location.hash="home";location.reload()});}
+renderHome();
+$("#content").addEventListener("click",e=>{const card=e.target.closest("[data-game]");if(card){openGame(card.dataset.game);return}const cat=e.target.closest("[data-category]");if(cat){$("#searchInput").value=cat.dataset.category;showResults(cat.dataset.category)}});
+$("#content").addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches("[data-game]")){e.preventDefault();openGame(e.target.dataset.game)}});
+$("#searchInput").addEventListener("input",e=>showResults(e.target.value));
+$("#menuBtn").addEventListener("click",()=>$("#sidebar").classList.toggle("open"));$(".avatar-button").addEventListener("click",()=>location.href="login.html");
+document.querySelectorAll("[data-view]").forEach(link=>link.addEventListener("click",e=>{const view=link.dataset.view;if(view==="home")return;if(view==="games"){e.preventDefault();$("#searchInput").value="";showResults("");showToast("Game catalogue preview");}else if(view==="categories"){e.preventDefault();$("#categoryGrid").scrollIntoView({behavior:"smooth"});}else{e.preventDefault();showToast("This section will be connected when accounts are added.");}$("#sidebar").classList.remove("open")}));
+document.addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();$("#searchInput").focus()}if(e.key==="Escape")$("#sidebar").classList.remove("open")});
